@@ -14,11 +14,12 @@
  * @author  Michael Kölling and David J. Barnes
  * @version 2011.08.09
  */
-
+import java.util.ArrayList;
 public class Game 
-{
+{ 
     private Parser parser;
     private Room currentRoom;
+   
 
     /**
      * Create the game and initialise its internal map.
@@ -26,6 +27,7 @@ public class Game
     public Game() 
     {
         createRooms();
+        
         parser = new Parser();
     }
 

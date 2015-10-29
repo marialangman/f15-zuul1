@@ -1,6 +1,7 @@
 import java.util.Set;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.ArrayList;
 
 /**
  * Class Room - a room in an adventure game.
@@ -12,7 +13,11 @@ import java.util.Iterator;
  * connected to other rooms via exits.  For each existing exit, the room 
  * stores a reference to the neighboring room.
  * 
- * @author  Michael Kölling and David J. Barnes
+ * A "Room" is responsible for storing what Item objects are initially in the room.  A "Room" should be able
+ * to store an ArrayList of Items through the add method.  As Van Helsing removes an item from a "Room," 
+ * the ArrayList remove method will remove the object.
+ * 
+ * @author  Michael Kölling and David J. Barnes / edited by Maria Langman 2015.10.28
  * @version 2011.08.09
  */
 
@@ -21,7 +26,7 @@ public class Room
     private String description;
     private String narrativeDescription;
     //private NonplayableChar npc;
-    //private Item item;
+    //private ArrayList<Item> items;
     private HashMap<String, Room> exits;        // stores exits of this room.
 
     /**
@@ -37,7 +42,7 @@ public class Room
         this.description = description;
         //narrativeDescription = null;
         //npc = null;
-        //item = null;
+        //items = null;
         exits = new HashMap<String, Room>();
     }
     
@@ -54,13 +59,13 @@ public class Room
         this.description = description;
         this.narrativeDescription = narrativeDescription;
         //npc = null;
-        //item = null;
+        //items = null;
     }
     
     /**
      * THIS METHOD HAS NO IMPLEMENTATION AT THIS POINT IN TIME
      * This method generates a room with a non-playable
-     * character such as a shopkeep and items to go with the
+     * character such as a shopkeeper and items to go with the
      * location that are not part of the NPC's inventory. If
      * no item is in the room by itself then it can just be
      * set to null.
@@ -75,7 +80,8 @@ public class Room
      *     this.description = description;
      *     this.narrativeDescription = narrativeDescription;
      *     this.npc = npc;
-     *     this.item = item;
+     *     if (item != null)
+     *       items.add(item);
      * }
      */
 
@@ -91,13 +97,13 @@ public class Room
     
     /**
      * THIS METHOD HAS NO IMPLEMENTATION AT THIS POINT IN TIME
-     * Return the item present in the room if there is one.
+     * Set the item present in the room if there is one.
      * @param Item   The item of the room.
      */
     /*
      * public void setItem(Item item)
      * {
-     *     this.item = item;
+     *     items.add(item);
      * }
      */
     
@@ -116,11 +122,16 @@ public class Room
     /**
      * THIS METHOD HAS NO IMPLEMENTATION AT THIS POINT IN TIME
      * Return the item present in the room if there is one.
-     * @return   The item of the room.
+     * @return   The item in the room. (The list of items in the room).
      */
     /*
-     * public Item getItem()
+     * 
+     * public ArrayList<Item> getItem()
      * {
+     *     if (items == null)
+     *          System.out.println("No items here to get") (This message belongs somewhere else,
+     *          but placed here for logic)
+     *    (Need a for loop to retrieve the item.)
      *     return item;
      * }
      */
