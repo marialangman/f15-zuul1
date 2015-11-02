@@ -24,6 +24,7 @@ public class CommandWords
     {
         validCommands = new HashMap<String, CommandWord>();
         validCommands.put("go", CommandWord.GO);
+        validCommands.put("look",CommandWord.LOOK);
         validCommands.put("help", CommandWord.HELP);
         validCommands.put("quit", CommandWord.QUIT);
     }

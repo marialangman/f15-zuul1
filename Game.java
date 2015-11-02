@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 /**
  *  This class is the main class of the "World of Zuul" application. 
  *  "World of Zuul" is a very simple, text based adventure game.  Users 
@@ -14,13 +15,12 @@
  * @author  Michael Kölling and David J. Barnes
  * @version 2011.08.09
  */
-import java.util.ArrayList;
+
 public class Game 
 { 
     private Parser parser;
     private Room currentRoom;
    
-
     /**
      * Create the game and initialise its internal map.
      */
@@ -36,7 +36,7 @@ public class Game
      */
     private void createRooms()
     {
-        Room outside, theater, pub, lab, office;
+        Room outside, theater, pub, lab, office, mountain;
 
         // create the rooms
         outside = new Room("outside the main entrance of the university");
@@ -44,6 +44,7 @@ public class Game
         pub = new Room("in the campus pub");
         lab = new Room("in a computing lab");
         office = new Room("in the computing admin office");
+        mountain = new Room("at the foot of the mountain");
 
         // initialise room exits
         outside.setExit("east", theater);
@@ -53,11 +54,17 @@ public class Game
         theater.setExit("west", outside);
 
         pub.setExit("east", outside);
+        pub.setExit("north", mountain);
 
         lab.setExit("north", outside);
         lab.setExit("east", office);
+       
+        lab.setItem(new Item("trail of blood", 0));
+        lab.setItem(new Item("bat guano", 0));
 
         office.setExit("west", lab);
+        
+        mountain.setExit("south", pub);
 
         currentRoom = outside;  // start game outside
     }
@@ -115,6 +122,20 @@ public class Game
 
             case GO:
                 goRoom(command);
+                break;
+            
+            case LOOK:
+                System.out.println("Looking about the room, you see:");
+                ArrayList<Item> roomItems = currentRoom.getItems();
+                if (currentRoom.getItems().size()==0)
+                {
+                    System.out.println(" nothing of value.");
+                }
+                else
+                {
+                    for (Item roomItem: currentRoom.getItems())
+                        System.out.println(roomItem.toString());
+                }
                 break;
 
             case QUIT:

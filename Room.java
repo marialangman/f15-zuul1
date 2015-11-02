@@ -26,7 +26,7 @@ public class Room
     private String description;
     private String narrativeDescription;
     //private NonplayableChar npc;
-    //private ArrayList<Item> items;
+    private ArrayList<Item> items;
     private HashMap<String, Room> exits;        // stores exits of this room.
 
     /**
@@ -42,7 +42,7 @@ public class Room
         this.description = description;
         //narrativeDescription = null;
         //npc = null;
-        //items = null;
+        items = new ArrayList<Item>();
         exits = new HashMap<String, Room>();
     }
     
@@ -100,13 +100,15 @@ public class Room
      * Set the item present in the room if there is one.
      * @param Item   The item of the room.
      */
-    /*
-     * public void setItem(Item item)
-     * {
-     *     items.add(item);
-     * }
-     */
+    public void setItem(Item item)
+    {
+          items.add(item);
+    }
     
+    public ArrayList<Item> getItems()
+    {
+          return items;
+    }
     /**
      * THIS METHOD HAS NO IMPLEMENTATION AT THIS POINT IN TIME
      * Define an NPC from the room if there is one.

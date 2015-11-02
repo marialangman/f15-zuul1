@@ -57,4 +57,13 @@ public class Item
     {
         this.power = power;
     }
+    
+    /**
+     * toString() shows the state of the Item object
+     * @return String state of the Item
+    */
+    public String toString()
+    {
+        return name+" with "+power +" to power to kill.";
+    }
 }
